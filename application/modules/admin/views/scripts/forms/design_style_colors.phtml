@@ -1,0 +1,7 @@
+<? foreach($this->element as $element) { ?><dl>
+	<dt><?=$element->getLabel()?></dt>
+	<dd>
+		<div style="background-color: #<?=$element->getValue()?>;" class="color-box"></div>
+		<?=$element->setAttrib('class', 'color-value fr')?>
+	</dd>
+</dl><? } ?>

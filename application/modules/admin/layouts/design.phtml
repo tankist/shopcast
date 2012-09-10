@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<?=$this->headMeta()?>
+	<?=$this->headLink()
+		->setStylesheet('/css/common.css')
+		->appendStylesheet('/css/design.css')?>
+	<?=$this->headTitle()?>
+	<?=$this->headStyle()?>
+</head>
+<body>
+	<?=$this->layout()->content?>
+	<?=$this->headScript()
+			->setFile('/js/jquery/jquery.min.js')
+			//->appendFile('http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js')
+			//->appendFile('/js/sellcast/login_admin.js')
+	?>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div class="dl last"><? $_layoutType = $this->element->layoutType->getValue() ?>
+	<?=$this->element->layoutType?>
+	<div class="structure-box-wrapper">
+		<div class="structure-box fl">
+			<a class="layout-structure-icon left<?=(($_layoutType == 'leftColumn')?' active':'')?>" rel="leftColumn" href="#leftColumn">Categories on left</a>
+			<div>Categories on left</div>
+		</div>
+		<div class="structure-box fl">
+			<a class="layout-structure-icon none<?=(($_layoutType == 'noColumns')?' active':'')?>" rel="noColumns" href="#noColumns">No categories</a>
+			<div>No categories</div>
+		</div>
+		<div class="structure-box fl">
+			<a class="layout-structure-icon right<?=(($_layoutType == 'rightColumn')?' active':'')?>" rel="rightColumn" href="#rightColumn">Categories on right</a>
+			<div>Categories on right</div>
+		</div>
+	</div>
+</div>

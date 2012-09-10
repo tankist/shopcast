@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+<projectProfile>
+    <projectDirectory>
+        <projectProfileFile filesystemName=".zfproject.xml"/>
+        <applicationDirectory classNamePrefix="">
+            <apisDirectory enabled="false"/>
+            <configsDirectory>
+                <applicationConfigFile type="ini"/>
+            </configsDirectory>
+            <controllersDirectory enabled="false"/>
+            <formsDirectory enabled="false"/>
+            <layoutsDirectory enabled="false"/>
+            <modelsDirectory>
+                <dbTableDirectory>
+                    <dbTableFile dbTableName="Categories"/>
+                    <dbTableFile dbTableName="ProductsCategories"/>
+                    <dbTableFile dbTableName="PartnerCategories"/>
+                    <dbTableFile dbTableName="ProductsPartnerCategories"/>
+                    <dbTableFile dbTableName="Designers"/>
+                    <dbTableFile dbTableName="Files"/>
+                    <dbTableFile dbTableName="Labels"/>
+                    <dbTableFile dbTableName="Options"/>
+                    <dbTableFile dbTableName="Orders"/>
+                    <dbTableFile dbTableName="OrderProducts"/>
+                    <dbTableFile dbTableName="Partners"/>
+                    <dbTableFile dbTableName="Payments"/>
+                    <dbTableFile dbTableName="Products"/>
+                    <dbTableFile dbTableName="ProductDesigners"/>
+                    <dbTableFile dbTableName="Stores"/>
+                    <dbTableFile dbTableName="StoreDesigns"/>
+                </dbTableDirectory>
+                <modelFile modelName="Store"/>
+                <modelFile modelName="Partner"/>
+                <modelFile modelName="Product"/>
+                <modelFile modelName="Order"/>
+                <modelFile modelName="Design"/>
+                <modelFile modelName="Payment"/>
+            </modelsDirectory>
+            <modulesDirectory>
+                <moduleDirectory moduleName="admin">
+                    <apisDirectory enabled="false"/>
+                    <configsDirectory enabled="false"/>
+                    <controllersDirectory>
+                        <controllerFile controllerName="Index">
+                            <actionMethod actionName="index"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Dash">
+                            <actionMethod actionName="index"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Products">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="view"/>
+                            <actionMethod actionName="save"/>
+                            <actionMethod actionName="delete"/>
+                            <actionMethod actionName="saveOption"/>
+                            <actionMethod actionName="addPhoto"/>
+                            <actionMethod actionName="deletePhoto"/>
+                            <actionMethod actionName="setTags"/>
+                            <actionMethod actionName="list"/>
+                            <actionMethod actionName="options"/>
+                            <actionMethod actionName="setOptionQuantity"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Orders">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="confirmShipment"/>
+                            <actionMethod actionName="delete"/>
+                            <actionMethod actionName="list"/>
+                            <actionMethod actionName="paginatedList"/>
+                            <actionMethod actionName="details"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Design">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="editPage"/>
+                            <actionMethod actionName="savePage"/>
+                            <actionMethod actionName="resetPage"/>
+                            <actionMethod actionName="layout"/>
+                            <actionMethod actionName="setLayout"/>
+                            <actionMethod actionName="setEmbed"/>
+                            <actionMethod actionName="resetEmbed"/>
+                            <actionMethod actionName="css"/>
+                            <actionMethod actionName="saveCss"/>
+                            <actionMethod actionName="style"/>
+                            <actionMethod actionName="saveStyle"/>
+                            <actionMethod actionName="saveHeaderImage"/>
+                            <actionMethod actionName="deleteHeaderImage"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Store">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="edit"/>
+                            <actionMethod actionName="save"/>
+                            <actionMethod actionName="login"/>
+                            <actionMethod actionName="logout"/>
+                            <actionMethod actionName="forget"/>
+                            <actionMethod actionName="activate"/>
+                            <actionMethod actionName="categoriesPositionUpdate"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Profile">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="add"/>
+                            <actionMethod actionName="edit"/>
+                            <actionMethod actionName="save"/>
+                            <actionMethod actionName="image"/>
+                            <actionMethod actionName="unimage"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Categories">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="save"/>
+                            <actionMethod actionName="delete"/>
+                            <actionMethod actionName="reorder"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Auth">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="login"/>
+                            <actionMethod actionName="logout"/>
+                            <actionMethod actionName="forgot"/>
+                            <actionMethod actionName="remember"/>
+                            <actionMethod actionName="activate"/>
+                        </controllerFile>
+                    </controllersDirectory>
+                    <formsDirectory>
+                        <formFile formName="StoreProfile"/>
+                        <formFile formName="EmbedSettings"/>
+                        <formFile formName="StoreElements"/>
+                        <formFile formName="StoreStyle"/>
+                        <formFile formName="StoreCss"/>
+                        <formFile formName="OrderShipping"/>
+                        <formFile formName="Product"/>
+                    </formsDirectory>
+                    <layoutsDirectory enabled="false"/>
+                    <modelsDirectory>
+                        <dbTableDirectory enabled="false"/>
+                    </modelsDirectory>
+                    <viewsDirectory>
+                        <viewScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Dash">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="options"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="setOptionQuantity"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="paginatedList"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="categoriesPositionUpdate"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Profile">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Profile">
+                                <viewScriptFile forActionName="add"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Profile">
+                                <viewScriptFile forActionName="edit"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Profile">
+                                <viewScriptFile forActionName="save"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Profile">
+                                <viewScriptFile forActionName="image"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Profile">
+                                <viewScriptFile forActionName="unimage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Categories">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Categories">
+                                <viewScriptFile forActionName="save"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Categories">
+                                <viewScriptFile forActionName="delete"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Categories">
+                                <viewScriptFile forActionName="reorder"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Auth">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Auth">
+                                <viewScriptFile forActionName="login"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Auth">
+                                <viewScriptFile forActionName="logout"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Auth">
+                                <viewScriptFile forActionName="forgot"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Auth">
+                                <viewScriptFile forActionName="remember"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Auth">
+                                <viewScriptFile forActionName="activate"/>
+                            </viewControllerScriptsDirectory>
+                        </viewScriptsDirectory>
+                        <viewHelpersDirectory/>
+                        <viewFiltersDirectory/>
+                    </viewsDirectory>
+                </moduleDirectory>
+                <moduleDirectory moduleName="store">
+                    <apisDirectory enabled="false"/>
+                    <configsDirectory enabled="false"/>
+                    <controllersDirectory>
+                        <controllerFile controllerName="Index">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="options"/>
+                            <actionMethod actionName="product"/>
+                            <actionMethod actionName="contact"/>
+                            <actionMethod actionName="list"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Error"/>
+                        <controllerFile controllerName="Test">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="store"/>
+                            <actionMethod actionName="addProduct"/>
+                            <actionMethod actionName="saveProduct"/>
+                            <actionMethod actionName="editProduct"/>
+                            <actionMethod actionName="product"/>
+                        </controllerFile>
+                        <controllerFile controllerName="ShoppingCart">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="view"/>
+                            <actionMethod actionName="update"/>
+                            <actionMethod actionName="add"/>
+                            <actionMethod actionName="delete"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Order">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="pay"/>
+                            <actionMethod actionName="total"/>
+                            <actionMethod actionName="shipping"/>
+                            <actionMethod actionName="billing"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Stat">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="product"/>
+                        </controllerFile>
+                    </controllersDirectory>
+                    <formsDirectory enabled="false"/>
+                    <layoutsDirectory enabled="false"/>
+                    <modelsDirectory>
+                        <dbTableDirectory enabled="false"/>
+                        <modelFile modelName="Cart"/>
+                    </modelsDirectory>
+                    <viewsDirectory>
+                        <viewScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                        </viewScriptsDirectory>
+                        <viewHelpersDirectory/>
+                        <viewFiltersDirectory/>
+                    </viewsDirectory>
+                </moduleDirectory>
+                <moduleDirectory moduleName="api">
+                    <apisDirectory enabled="false"/>
+                    <configsDirectory enabled="false"/>
+                    <controllersDirectory>
+                        <controllerFile controllerName="Store">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="getByDomain"/>
+                            <actionMethod actionName="post"/>
+                            <actionMethod actionName="put"/>
+                            <actionMethod actionName="delete"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Product">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="get"/>
+                            <actionMethod actionName="post"/>
+                            <actionMethod actionName="put"/>
+                            <actionMethod actionName="delete"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Order">
+                            <actionMethod actionName="index"/>
+                            <actionMethod actionName="get"/>
+                            <actionMethod actionName="post"/>
+                            <actionMethod actionName="put"/>
+                            <actionMethod actionName="delete"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Error">
+                            <actionMethod actionName="index"/>
+                        </controllerFile>
+                        <controllerFile controllerName="Category">
+                            <actionMethod actionName="index"/>
+                        </controllerFile>
+                        <controllerFile controllerName="ShoppingCart">
+                            <actionMethod actionName="index"/>
+                        </controllerFile>
+                    </controllersDirectory>
+                    <formsDirectory enabled="false"/>
+                    <layoutsDirectory enabled="false"/>
+                    <modelsDirectory>
+                        <dbTableDirectory enabled="false"/>
+                    </modelsDirectory>
+                    <viewsDirectory>
+                        <viewScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Product">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Error">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="getByDomain"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Category">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="ShoppingCart">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="post"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="put"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="delete"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Product">
+                                <viewScriptFile forActionName="get"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Product">
+                                <viewScriptFile forActionName="post"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Product">
+                                <viewScriptFile forActionName="put"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Product">
+                                <viewScriptFile forActionName="delete"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="get"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="post"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="put"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="delete"/>
+                            </viewControllerScriptsDirectory>
+                        </viewScriptsDirectory>
+                        <viewHelpersDirectory/>
+                        <viewFiltersDirectory/>
+                    </viewsDirectory>
+                </moduleDirectory>
+                <moduleDirectory moduleName="default">
+                    <apisDirectory enabled="false"/>
+                    <configsDirectory enabled="false"/>
+                    <controllersDirectory/>
+                    <formsDirectory enabled="false"/>
+                    <layoutsDirectory enabled="false"/>
+                    <modelsDirectory>
+                        <dbTableDirectory enabled="false"/>
+                    </modelsDirectory>
+                    <viewsDirectory>
+                        <viewScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Error">
+                                <viewScriptFile forActionName="error"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="view"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="save"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="delete"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="saveOption"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="addPhoto"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="deletePhoto"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="setTags"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="confirmShipment"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="delete"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="editPage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="savePage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="resetPage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="layout"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="setLayout"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="setEmbed"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="resetEmbed"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="css"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="saveCss"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="style"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="saveStyle"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="saveHeaderImage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Design">
+                                <viewScriptFile forActionName="deleteHeaderImage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="edit"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="save"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="login"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="logout"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="forget"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Store">
+                                <viewScriptFile forActionName="activate"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Test">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Test">
+                                <viewScriptFile forActionName="store"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Test">
+                                <viewScriptFile forActionName="addProduct"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Test">
+                                <viewScriptFile forActionName="saveProduct"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Test">
+                                <viewScriptFile forActionName="editProduct"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Test">
+                                <viewScriptFile forActionName="product"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Products">
+                                <viewScriptFile forActionName="list"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="list"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="options"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="list"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Orders">
+                                <viewScriptFile forActionName="details"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="product"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="sendMessage"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="ShoppingCart">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="ShoppingCart">
+                                <viewScriptFile forActionName="view"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="ShoppingCart">
+                                <viewScriptFile forActionName="update"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="ShoppingCart">
+                                <viewScriptFile forActionName="addProduct"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="ShoppingCart">
+                                <viewScriptFile forActionName="deleteProduct"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="pay"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="total"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="shipping"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Order">
+                                <viewScriptFile forActionName="billing"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Index">
+                                <viewScriptFile forActionName="list"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Stat">
+                                <viewScriptFile forActionName="index"/>
+                            </viewControllerScriptsDirectory>
+                            <viewControllerScriptsDirectory forControllerName="Stat">
+                                <viewScriptFile forActionName="product"/>
+                            </viewControllerScriptsDirectory>
+                        </viewScriptsDirectory>
+                        <viewHelpersDirectory/>
+                        <viewFiltersDirectory enabled="false"/>
+                    </viewsDirectory>
+                </moduleDirectory>
+            </modulesDirectory>
+            <viewsDirectory enabled="false" />
+            <bootstrapFile filesystemName="Bootstrap.php"/>
+        </applicationDirectory>
+        <dataDirectory enabled="false">
+            <cacheDirectory enabled="false"/>
+            <searchIndexesDirectory enabled="false"/>
+            <localesDirectory enabled="false"/>
+            <logsDirectory enabled="false"/>
+            <sessionsDirectory enabled="false"/>
+            <uploadsDirectory enabled="false"/>
+        </dataDirectory>
+        <libraryDirectory>
+            <zfStandardLibraryDirectory enabled="false"/>
+        </libraryDirectory>
+        <publicDirectory>
+            <publicStylesheetsDirectory enabled="false"/>
+            <publicScriptsDirectory enabled="false"/>
+            <publicImagesDirectory enabled="false"/>
+            <publicIndexFile filesystemName="index.php"/>
+            <htaccessFile filesystemName=".htaccess"/>
+        </publicDirectory>
+        <projectProvidersDirectory enabled="false"/>
+        <temporaryDirectory enabled="false"/>
+        <testsDirectory>
+            <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+            <testApplicationDirectory>
+                <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
+                <testApplicationControllerDirectory>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                    <testApplicationControllerFile/>
+                </testApplicationControllerDirectory>
+                <testApplicationModulesDirectory>
+                    <testApplicationModuleDirectory forModuleName="admin">
+                        <testApplicationControllerDirectory>
+                            <testApplicationControllerFile forControllerName="Profile">
+                                <testApplicationActionMethod forActionName="index"/>
+                                <testApplicationActionMethod forActionName="add"/>
+                                <testApplicationActionMethod forActionName="edit"/>
+                                <testApplicationActionMethod forActionName="save"/>
+                                <testApplicationActionMethod forActionName="image"/>
+                                <testApplicationActionMethod forActionName="unimage"/>
+                            </testApplicationControllerFile>
+                            <testApplicationControllerFile forControllerName="Categories">
+                                <testApplicationActionMethod forActionName="index"/>
+                                <testApplicationActionMethod forActionName="save"/>
+                                <testApplicationActionMethod forActionName="delete"/>
+                                <testApplicationActionMethod forActionName="reorder"/>
+                            </testApplicationControllerFile>
+                            <testApplicationControllerFile forControllerName="Auth">
+                                <testApplicationActionMethod forActionName="index"/>
+                                <testApplicationActionMethod forActionName="login"/>
+                                <testApplicationActionMethod forActionName="logout"/>
+                                <testApplicationActionMethod forActionName="forgot"/>
+                                <testApplicationActionMethod forActionName="remember"/>
+                                <testApplicationActionMethod forActionName="activate"/>
+                            </testApplicationControllerFile>
+                        </testApplicationControllerDirectory>
+                    </testApplicationModuleDirectory>
+                </testApplicationModulesDirectory>
+            </testApplicationDirectory>
+            <testLibraryDirectory>
+                <testLibraryBootstrapFile filesystemName="bootstrap.php"/>
+            </testLibraryDirectory>
+        </testsDirectory>
+    </projectDirectory>
+</projectProfile>

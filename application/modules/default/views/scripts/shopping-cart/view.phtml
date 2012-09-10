@@ -1,0 +1,88 @@
+<?
+if ( $this->shoppingCartProducts ) {
+?>
+<form action="/shopping-cart/update/" method="post">
+<table width="100%" cellspacing="1" class="cart">
+<tbody><tr>
+		<th><h3>Product</h3></th>
+		<th><h3>Information</h3></th>
+		<th><h3>Total</h3></th>
+		<th><h3>&nbsp;</h3></th>
+	</tr>
+<?
+	foreach ( $this->shoppingCartProducts as $product ) {
+		
+?>	
+	<tr>
+		<td align="center">
+			<a href="/index/product/id/<?=$product->id?>">
+				<img src="/<?=$product->path?>/<?=$product->mainImage?>" title="<?=$product->name?>" alt="<?=$product->name?>">
+			</a>
+		</td>
+		<td align="left" valign="middle" width="99%">
+			<table cellspacing="2" width="100%">
+				<tbody><tr>
+					<th align="right">Title: </th>
+					<td align="left"><a href="/index/product/id/<?=$product->id?>" class="text-limit-left" style="display: block;" title="product01"><?=$product->name?></a></td>
+				</tr>
+				<tr>
+					<th align="right">Quantity: </th>
+					<td align="left"><input name="quantity[<?=$product->id?>][<?=$product->product_info['id']?>]" class="input-shape" style="width: 30px;" value="<?=$product->quantity?>" type="text"></td>
+				</tr>
+				<tr>
+					<th align="right">Price: </th>
+
+					<td align="left">$<?=$product->sale?$product->sale:$product->price?></td>
+				</tr>
+				<tr>
+					<th align="right" width="40%">
+						<div class="text-limit-right">
+							<span style="float: right;">:</span>
+							<div style="width: 92%;" class="text-limit-right" title="Size">
+								Option
+							</div>
+						</div>
+					</th>
+					<td align="left" width="60%">
+						<div class="text-limit-left">
+							<?=$product->product_info['name']?>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+		<td align="center"><strong>$<?=$product->sale?$product->sale*$product->quantity:$product->price*$product->quantity?></strong></td>
+		<td align="center"><button class="x-btn" onclick="location.href='/shopping-cart/delete-product/id/<?=$product->id?>/option/<?=$product->product_info['id']?>'" type="button">X</button></td>
+
+	</tr>
+	<tr>
+		<td colspan="4" style="padding: 0pt;" align="center"><div class="hr">&nbsp;</div></td>
+	</tr>
+<?
+	}
+?>
+	
+	
+	<tr>
+		<td colspan="2" align="right"><strong>TOTAL: </strong></td>
+		<td align="center"><strong id="vc-total">$<?=$this->totalPrice?></strong></td>
+
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td><button class="resume-shoping-btn" type="submit">Update</button></td>
+		<td colspan="3" style="padding-top: 20px; padding-bottom: 20px;" align="right">
+			<button class="resume-shoping-btn" type="button" onclick="location.href='/';">Resume</button>
+			<button name="resume" class="checkout-btn" type="button" onclick="location.href='/order/';" >Checkout</button>
+		</td>
+	</tr>
+</tbody>
+</table>
+</form>
+<?
+} else {
+?>
+	<div style="padding:75px 50px 60px;text-align:center;">YOUR SHOPPING CART IS EMPTY</div>
+<?
+}
+?>

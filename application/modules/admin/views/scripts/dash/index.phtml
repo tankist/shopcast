@@ -1,0 +1,74 @@
+<div id="dash">
+	<div class="sc-dash-column fl">
+		<div class="blue-triangle">
+			<div class="blue-h1">
+				<h1 class="fl">Store</h1>
+			</div>
+		</div>
+		<div class="ui-helper-hidden">
+			<div id="dash-orders"></div>
+			<hr class="adpressed">
+		</div>
+		<div class="ui-helper-hidden">
+			<div id="dash-inventory"></div>
+			<hr class="adpressed">
+		</div>
+		<div class="ui-helper-hidden">
+			<div id="dash-view"></div>
+		</div>
+	</div>
+	<div class="sc-dash-column fl">
+		<div class="blue-triangle">
+			<div class="blue-h1">
+				<h1 class="fl">Shoppers</h1>
+			</div>
+		</div>
+		<div class="ui-helper-hidden">
+			<div id="dash-visitors"></div>
+			<hr class="adpressed">
+		</div>
+		<div class="ui-helper-hidden">
+			<div id="dash-source"></div>
+		</div>
+	</div>
+</div>
+<script type="text/html" id="dashHeader">
+<% if (header && header.length>0) { %>
+	<tr><% for (var i=0;i<header.length;i++) { %>
+			<th class="<%=options.classPrefix%><%=header[i].label.toLowerCase()%>"><%=header[i].label%></th>
+	<%}%></tr>
+<% } %>
+</script>
+<script type="text/html" id="dashOrdersRow">
+	<% if (rows && rows.length > 0) { for (var i=0;i<rows.length;i++) { %><tr>
+		<td class="<%=options.classPrefix%>who"><%=rows[i].who%></td>
+		<td class="<%=options.classPrefix%>date"><%=(new Date(parseInt(rows[i].date) * 1000).toLocaleDateString())%></td>
+		<td class="<%=options.classPrefix%>status"><%=rows[i].status.capitalize()%></td>
+		<td class="link-order"><a href="<?=$this->url(array('controller' => 'orders', 'action' => 'view'))?>/<%=rows[i].order_id%>">View Order ></a></td>
+	</tr><% }} %>
+</script>
+<script type="text/html" id="dashInventoryRow">
+	<% if (rows && rows.length > 0) { for (var i=0;i<rows.length;i++) { %><tr>
+		<td class="<%=options.classPrefix%>title"><%=rows[i].title%></td>
+		<td class="<%=options.classPrefix%>date"><%=(new Date(parseInt(rows[i].date) * 1000).toLocaleDateString())%></td>
+	</tr><% }} %>
+</script>
+<script type="text/html" id="dashViewRow">
+	<% if (rows && rows.length > 0) { for (var i=0;i<rows.length;i++) { %><tr>
+		<td class="<%=options.classPrefix%>product"><%=rows[i].product%></td>
+		<td class="<%=options.classPrefix%>view"><%=rows[i].view%></td>
+	</tr><% }} %>
+</script>
+<script type="text/html" id="dashVisitorsRow">
+	<% if (rows && rows.length > 0) { for (var i=0;i<rows.length;i++) { %><tr>
+		<td class="<%=options.classPrefix%>when"><%=rows[i].when%></td>
+		<td class="<%=options.classPrefix%>total"><%=rows[i].total%></td>
+	</tr><% }} %>
+</script>
+<script type="text/html" id="dashSourceRow">
+	<% if (rows && rows.length > 0) { for (var i=0;i<rows.length;i++) { %><tr>
+		<td class="<%=options.classPrefix%>from sc-dash-source-cell1"><a href="rows[i].from"><%=rows[i].from%></a></td>
+		<td class="<%=options.classPrefix%>hits"><%=rows[i].hits%></td>
+		<td class="<%=options.classPrefix%>last"><%=rows[i].last%></td>
+	</tr><% }} %>
+</script>

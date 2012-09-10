@@ -1,0 +1,16 @@
+<?php
+	$companyElement = $this->element->shipping_company;
+	$companyClass = ($companyElement->getValue())?$companyElement->getValue():'none';
+?>
+<dl class="<?=$companyClass?>">
+	<?=$companyElement?>
+	<?=$this->element->tracking_number?>
+	<?=$this->element->tracking_url?>
+	<?=$this->element->note?>
+	<?=$this->element->order_id?>
+	<dt>&nbsp;</dt>
+	<dd>
+		<?=$this->element->submit?>
+		<div class="fl">&nbsp;&nbsp;|&nbsp;&nbsp;<a class="cancel" href="#">Cancel &amp; Refund</a></div>
+	</dd>
+</dl>

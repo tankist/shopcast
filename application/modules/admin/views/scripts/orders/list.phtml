@@ -1,0 +1,17 @@
+<table width="95%" align="center" style="width: 95%;"><tr><th>
+	<?php
+		echo join('</th><th>', array_keys($this->orders[0]['shipping_info']));
+	?>
+</th></tr>
+<?php
+	foreach ($this->orders as /** @var Model_Order **/ $order) {
+		?>
+		<tr><td>
+		<?php
+			echo join('</td><td>', $order['shipping_info']);
+		?>
+		</td></tr>
+		<?php
+	}
+?>
+</table>

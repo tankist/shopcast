@@ -1,0 +1,25 @@
+<?
+if ( $this->productsList ) {
+	foreach ( $this->productsList as $product ) {
+?>
+			<div class="product">
+				<div class="cover">
+					<a href="/index/product/id/<?=$product->id?>"><img alt="<?=$product->name?>" title="<?=$product->name?>" src="/images/spacer.gif" width="142" height="142"></a>
+				</div>
+				<div class="holder">
+					<div class="inner">
+						<div class="center">
+							<img alt="<?=$product->name?>" title="<?=$product->name?>" src="/<?=$product->path?>/<?=$product->mainImage?>">
+						</div>
+					</div>
+				</div>
+				<a href="/index/product/id/<?=$product->id?>"><?=$product->name?></a>
+			</div>
+<?
+	}
+} else {
+?>
+	There is no any product.
+<?
+}
+?>

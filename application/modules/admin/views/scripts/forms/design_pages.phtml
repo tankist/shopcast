@@ -1,0 +1,10 @@
+<? foreach($this->element as $element) { ?><dl>
+	<dt><?=$element->getLabel()?></dt>
+	<dd>
+		<div class="fr">
+			<span class="sc-loader light-grey ui-helper-hidden"></span>
+			<?=$this->formLabel($element->getName(), '&nbsp;Show&nbsp;', array('class' => 'fl', 'escape' => false))?>
+			<?=$element?>
+		</div>
+	</dd>
+</dl><? } ?>

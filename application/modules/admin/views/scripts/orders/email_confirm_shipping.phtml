@@ -1,0 +1,141 @@
+<html><head></head><body bgcolor="#ffffff" style="margin:0">
+	<table cellpadding="0" cellspacing="0" align="center" width="800">
+		<tr>
+			<td background="<?=IMG_EMAIL_URL?>/header.jpg" height="235" align="center" valign="bottom">
+				<?if (is_array($store) && isset($store['logo_ext']) && strlen($store['logo_ext']) > 0){?>
+				<img src="<?=STORE_PATH?>/<?=floor($store['id'] / 1000)?>/<?=$store['id']?>/logo/<?=MINI_THUMBNAIL_PREFIX?>logo.<?=$store['logo_ext']?>" style="margin:0 0 10px 0">
+				<hr style="border:0px solid; background-color:#e9e9e9; color:#e9e9e9; height:1px; width:650px; margin:5px 0 5px 0;"><br>
+				<?}?>
+			</td>
+		</tr>
+		<tr>
+			<td background="<?=IMG_EMAIL_URL?>/body.gif" valign="top" align="left">
+				<table cellpadding="3" cellspacing="1" width="640px" style="margin:0 70px 10px 70px;">
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+						Dear <?=$this->order['shippingInfo']['first_name'].' '.$this->order['shippingInfo']['last_name']?>,
+						</td>
+					</tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+						Thank you for shopping at <?=$this->store['companyName']?>
+						</td>
+					</tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+						We have shipped one or all of your items. Please note that orders with multiple items may be shipped in separate boxes. 
+						If you have any remaining items, we will send you an additional confirmation e-mail when those items ship.
+						</td>
+					</tr>
+				</table>
+
+				<table cellpadding="3" cellspacing="1" width="640px" style="margin:0 70px 10px 70px;">
+					<tr>
+						<th colspan="3" align="left" style="text-indent:14px; background-color:#d7e2e6; color:#5e5e5e; font:bold 12px/18px arial;">Order Summary</th>
+					</tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+							Order Date: <?=date('n/d/Y, g:i A', $this->order['date_purchased'])?><br>
+							Order Number: <?=$this->order['id']?>
+						</td>
+						<?if($this->order['shippingInfo']['billing']){ ?>
+						<td style="font:12px arial; color:#404040; padding: 7px 18px 0 18px;" align="right">
+							Billing Address:
+						</td>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+							<?=$this->order['shippingInfo']['billing']; ?>
+						</td>
+						<? } ?>
+					</tr>
+				</table>
+
+				<table cellpadding="3" cellspacing="1" width="640px" style="margin:0 70px 10px 70px;">
+					<tr>
+						<th colspan="4" align="left" style="text-indent:14px; background-color:#d7e2e6; color:#5e5e5e; font:bold 12px/18px arial;">Shipped Items</th>
+					</tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;" align="right">
+							Shipping Address:
+						</td>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+							<?=$this->order['shippingInfo']['firstName'].' '.$this->order['shippingInfo']['lastName']?><br>
+				<? if	($this->order['shippingInfo']['address1'])	:	?>
+							<?=$this->order['shippingInfo']['address1']?><br><?=strlen(trim($this->order['shippingInfo']['address2']))>0?$this->order['shippingInfo']['address2'].'<br>':''?>
+							<?=$this->order['shippingInfo']['city']?> <?=$this->order['shippingInfo']['state']?>, <?=$this->order['shippingInfo']['postal']?><br>
+							<?=$countries[$this->order['shippingInfo']['country']]?>
+				<? endif ?>
+						</td>
+						<td style="font:12px arial; color:#404040; padding: 7px 18px 0 18px;" align="right">
+							Status/Tracking: 
+						</td>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+							Shipped <?=date('n/d/Y')?><br>
+							Standard Shipping<br>
+							<?	if (strlen($this->order['shippingInfo']['shipping_company']) !== 'none') : $companyArr = array( 'ups' => 'UPS', 'fedex' => 'FedEx', 'dhl' => 'DHL' ); ?>
+							<?=$companyArr[$this->order['shippingInfo']['shipping_company']]?>
+							<?	endif ?>
+							<?	if (strlen($this->order['shippingInfo']['tracking_number']) > 0) :?>
+							 Tracking:<?=$this->order['shippingInfo']['tracking_number']?><br>
+							<?	endif ?>
+							<?	if (strlen($this->order['shippingInfo']['tracking_url']) > 0) :?>
+							<a href="<?=$this->order['shippingInfo']['tracking_url']?>">Link for tracking</a><br>
+							<?	endif ?>
+						</td>
+					</tr>
+				<?	if (strlen($this->order['shippingInfo']['note']) > 0) :?>
+					<tr>
+						<td colspan="4" align="center" style="padding: 15pt 110px;">
+						<table>
+							<tr>
+								<td style="background-color:#EEEEEE; font:12px arial; color:#404040; padding: 15px 30px;" align="left">
+									&ldquo;<?=$this->order['shippingInfo']['note']?>&rdquo;
+								</td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+				<?	endif ?>
+				</table>
+				<?	foreach ($this->order['products'] as $product) {
+						//include(EMAIL_PATH.'/_order-product.phtml'); 
+					}
+				?>
+				<table cellpadding="3" cellspacing="1" width="640px" style="margin:0 70px 10px 70px;">
+					<tr>
+						<th colspan="2" align="left" style="text-indent:14px; background-color: #d7e2e6; color:#5e5e5e; font:bold 12px/18px arial;">Total Charges</th>
+					</tr>
+					<tr>
+						<td style="font:12px arial; color:#404040; padding: 7px 18px 0 18px;">Total Product Price:</td>
+						<td width="100" align="right" style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">$<?=number_format($this->order['products_price'], 2, '.', ' ')?></td>
+					</tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">Total Shipping Price:</td>
+						<td align="right" style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">$<?=number_format($this->order['shipping_price'], 2, '.', ' ')?></td>
+					</tr>
+					<tr><td colspan="2" align="center" style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;"><hr style="width:600px; border:0px solid; background-color:#e9e9e9; color:#e9e9e9; height:1px; margin:5px 0 5px 0;"></td></tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;"><b>Total Price:</b></td>
+						<td align="right" style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;"><b>$<?=number_format($this->order['products_price'] + $this->order['shipping_price'], 2, '.', ' ')?></b></td>
+					</tr>
+				</table>
+
+				<table cellpadding="3" cellspacing="1" width="640px" style="margin:50px 70px 10px 70px;">
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+						Sincerely,
+						</td>
+					</tr>
+					<tr>
+						<td style="font:12px arial;	color:#404040; padding: 7px 18px 0 18px;">
+						<?=$this->mailFrom?><br>
+						<?=$this->mailFromName?>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td background="<?=IMG_EMAIL_URL?>/footer.jpg" style="font:12px arial; color:#404040; padding:7px 18px 0 18px;" height="217" align="center" valign="bottom"><hr style="border:0px solid; background-color: #e9e9e9; color:#e9e9e9; height:1px; width:650px; margin:5px 0 5px 0;"><div style="color:#a4b5be; margin:15px 0 50px 0; font:bold 12px arial">Powered By SellCast</div></td>
+		</tr>
+	</table>
+</body></html>

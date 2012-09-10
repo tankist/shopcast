@@ -1,0 +1,12 @@
+<div class="content-narrow"><?=$this->form?>
+<?=$this->formImage?></div>
+<script type="text/html" id="imageTpl">
+	<div class="product-image-wrapper">
+		<img src="/<%=imageFolder%>/<%=name%>_s.<%=ext%>" alt="">
+		<div class="fl">
+			<input name="image" type="radio" value="<%=image_id%>" id="<%=image_id%>">&nbsp;
+			<label for="<%=image_id%>">Main Image</label>
+		</div>
+		<button class="delete fr" image_id="<%=image_id%>">delete</button>
+	</div>
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <?=$this->headMeta()?>
+    <?=$this->headLink()->setStylesheet('/css/login.min.css')?>
+    <?=$this->headTitle()?>
+    <?=$this->headStyle()?>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <?=$this->layout()->content?>
+        </div>
+    </div>
+</div>
+<?=$this->headScript()
+    ->setFile('/js/jquery/jquery.min.js')
+    ->appendFile('/js/jquery/jquery.form.js')
+    ->appendFile('/js/sellcast/ui/scrollable.min.js')
+    ->appendFile('/js/sellcast/admin/login.js')
+?>
+</body>
+</html>

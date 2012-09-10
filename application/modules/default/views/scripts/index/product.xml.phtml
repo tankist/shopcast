@@ -1,0 +1,15 @@
+<product>
+	<name><?=$this->product->name?></name>
+	<mainImage>/<?=$this->path?>/<?=$this->product->mainImage?></mainImage>
+	<price><?=$this->product->price?></price>
+	<description><?=$this->product->description?></description>
+	<options>
+		<? foreach ( $this->product->options as $option ) { ?>
+		<option id="<?=$option->id?>"><?=$option->name?></option>
+		<? } ?>
+	</options>
+	<images><? foreach ( $this->imagesList as $image )	 { ?>
+		<src>/<?=$this->path?>/<?=$image->name?></src>
+		<thumb>/<?=$this->path?>/<?=$image->thumb?></thumb>
+	<? } ?></images>
+</product>

@@ -1,0 +1,39 @@
+<?
+if (isset($this->store->products)) {
+	$products = $this->store->products;
+	unset($this->store->products);
+}
+if (isset($this->store->orders)) {
+	$orders = $this->store->orders;
+	unset($this->store->orders);
+}
+?>
+<dl>
+	<dt>Store:</dt>
+	<dd><?=$this->store->company_name?></dd>
+	<dt>Domain:</dt>
+	<dd><?=$this->store->domain?></dd>
+	<dt>Description:</dt>
+	<dd><?=$this->store->descr?></dd>
+	<? if (isset($products)): ?><dt>Products (<?=$this->store->productsCount?>):</dt>
+	<dd><ul>
+	<? foreach ($products as $product) {
+	   echo "<li>".$product->name." (".$product->status.")</li>";
+	   } ?></ul>
+	</dd><? endif; ?>
+	<? if (isset($orders)): ?><dt>Orders (<?=$this->store->getOrdersCount()?>):</dt>
+	<dd><ul>
+	<? foreach ($orders as $order) {
+	   echo "<li>".$order->id." ".$order->status."</li>";
+	   /*var_dump($order);*/} ?></ul>
+	</dd><? endif; ?>
+	<dt>Order:</dt>
+	<dd><?=$this->store->order->id?> <?=$this->store->order->status?></dd>
+	<? if (isset($this->store->orderProducts)): ?><dt>Order Products:</dt>
+	<dd><ul>
+	<? foreach ($this->store->orderProducts as $orderProduct) {
+	   echo "<li>".$orderProduct->id." - ".$orderProduct->product_name." ".$orderProduct->product_price."</li>";
+	   /*var_dump($order);*/} ?></ul>
+	</dd><? endif; ?>
+	
+</dl>

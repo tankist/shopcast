@@ -1,0 +1,167 @@
+<div class="product-info">
+	<div class="grey-h2">
+		<h2 class="fl">Product Info</h2>
+	</div>
+	<dl>
+		<dt><?=$this->element->name->getLabel()?></dt>
+		<dd><?=$this->element->name?></dd>
+	</dl>
+	<dl>
+		<dt><?=$this->element->status->getLabel()?></dt>
+		<dd><?=$this->element->status?></dd>
+	</dl>
+	<dl>
+		<dt>Categories</dt>
+		<dd class="product-categories sortable">
+			<?=$this->element->categories?>
+			<dl class="add-category-container">
+				<dt>
+					<input type="checkbox"  /> <input type="text" />&nbsp;<button class="button-add" type="button">add</button>
+					<label for=""></label><span class="sc-loader ui-helper-hidden">&nbsp;</span>
+				</dt>
+				<dd>
+					<a href="#" class="edit">Edit</a>
+					<span class="v-line">|</span>
+					<span class="button-replace">replace</span>&nbsp;<button class="delete" type="button">delete</button>
+				</dd>
+			</dl>
+			<dl class="non-sortable">
+				<dt><button class="button-add-category" type="button">add category</button></dt>
+				<dd>&nbsp;</dd>
+			</dl>
+		</dd>
+	</dl>
+	<dl class="last">
+		<dt><?=$this->element->description->getLabel()?></dt>
+		<dd><?=$this->element->description?></dd>
+	</dl>
+</div>
+
+<div class="product-photo">
+	<div class="grey-h2">
+		<h2 class="fl">Photos</h2>
+	</div>
+	<div class="dl last" >
+		<div class="oh" id="product-images-block">
+			<?=$this->element->image?>
+		</div>
+		<div class="center"><div class="center-container save-button-wrapper">
+			<div id="add-profile-image">
+				<button type="button" class="button-add-new-image">add new image</button>
+			</div>
+			<div id="add-profile-image-loading" class="sc-loader" style="display: none;">&nbsp;</div>
+		</div></div>
+	</div>
+</div>
+
+<div class="product-shipping">
+	<div class="grey-h2">
+		<h2 class="fl question">Price + Shipping</h2>
+		<button class="button-save-default-options fr" type="button">save default options</button>
+		<button class="button-reload fr" type="button">reload</button>
+	</div>
+	<dl>
+		<dt>Price ($)</dt>
+		<dd class="product-price">
+			<dl>
+				<dt><?=$this->element->prices->is_on_sale?>&nbsp;<label for="sale"><?=$this->element->prices->is_on_sale->getLabel()?></label></dt>
+				<dd><?=$this->element->prices->normal?></dd>
+			</dl>
+			<dl>
+				<dt><?=$this->element->prices->sale->getLabel()?></dt>
+				<dd><?=$this->element->prices->sale?></dd>
+			</dl>
+		</dd>
+	</dl>
+	<dl >
+		<dt>Shipping</dt>
+		<dd  class="product-shipping-price">
+			<?=$this->element->shipping->shipping_type?>
+			<div id="shipping-options-subform">
+				<dl>
+					<dt><?=$this->element->shipping->add_amount->getLabel()?></dt>
+					<dd><?=$this->element->shipping->add_amount?></dd>
+				</dl>
+				<dl>
+					<dt><?=$this->element->shipping->alone->getLabel()?></dt>
+					<dd><?=$this->element->shipping->alone?></dd>
+				</dl>
+			</div>
+		</dd>
+	</dl>
+	<dl class="last">
+		<dt><b>Will You Receive</b><span class="font-blue"> - Applicable PayPal Fees*</span></dt>
+		<dd  class="total-price"><span class="font-blue">*</span>$100.00</dd>
+	</dl>
+</div>
+
+<div class="product-options sortable">
+	<div class="grey-h2">
+		<h2 class="fl question">Options</h2>
+		<button class="button-save-default-options fr" type="button">save default options</button>
+		<button class="button-reload fr" type="button">reload</button>
+	</div>
+	<? foreach ( $this->element->options as $option ) { ?>
+	<dl>
+		<dt>
+			<span class="button-replace">replace</span>
+			<?=$this->formLabel($option->name->getFullyQualifiedName(), $option->name->getLabel(), array('class' => 'name-label'))?>
+		</dt>
+		<dd>
+			<div class="fl">
+				<?=$option->name?>
+				<?=$option->quantity?>
+				<?=$option->is_unlimited?>
+			</div>
+			<button class="delete fr" type="button">delete</button></dd>
+	</dl>
+	<? } ?>
+	<dl class="last non-sortable">
+		<div class="center"><div class="center-container save-button-wrapper"><?=$this->element->add_new_option?></div></div>
+	</dl>
+</div>
+<div class=" center">
+	<div class="center-container submit-wrapper">
+		<?=$this->element->id?>
+		<?=$this->element->new_options_ids?>
+		<button class="button-save fl">save</button>
+		<div class="fl second-button-link">&nbsp;&nbsp;|&nbsp;&nbsp;<a id="reset-form-button" href="#">Default</a></div>
+	</div>
+</div>
+<script type="text/html" id="addCategoryBox">
+	<dt>
+		<input name="categories[]" type="checkbox"> <input type="text">&nbsp;<button class="button-add" type="button">add</button>
+		<label for=""></label><span class="sc-loader ui-helper-hidden">&nbsp;</span>
+	</dt>
+	<dd>
+		<a href="#" class="edit">Edit</a>
+		<span class="v-line">|</span>
+		<span class="button-replace">replace</span>&nbsp;<button class="delete" type="button">delete</button>
+	</dd>
+</script>
+<script type="text/html" id="addOptionBox">
+		<dt>
+			<span class="button-replace">replace</span>
+			<label for="option_<%=option.id%>-name" class="name-label">Option Name</label>
+		</dt>
+		<dd>
+			<div class="fl">
+				<input type="text" class="product-option-name" value="" id="option_<%=option.id%>-name" name="option_<%=option.id%>[name]">
+				<label class="optional" for="option_<%=option.id%>-quantity">Quantity</label>
+				<input type="text" class="product-option-quantity" value="" id="option_<%=option.id%>-quantity" name="option_<%=option.id%>[quantity]">
+				<label class="optional" for="option_<%=option.id%>-is_unlimited">Unlimited</label>
+				<input type="hidden" value="0" name="option_<%=option.id%>[is_unlimited]"><input type="checkbox" value="0" id="option_<%=option.id%>-is_unlimited" name="option_<%=option.id%>[is_unlimited]">
+			</div>
+			<button type="button" class="delete fr">delete</button>
+		</dd>
+</script>
+<script type="text/html" id="imageTpl">
+	<div class="product-image-wrapper">
+		<img src="/<%=imageFolder%>/<%=name%>_m.<%=ext%>" alt="">
+		<div class="fl">
+			<input name="image" type="radio" value="<%=image_id%>" id="<%=image_id%>" <%=checked%>>&nbsp;
+			<label for="<%=image_id%>">Main Image</label>
+		</div>
+		<button class="delete fr" image_id="<%=image_id%>">delete</button>
+	</div>
+</script>

@@ -1,0 +1,62 @@
+<div class="body">
+	<div class="pd_all">
+		<div class="pd_img">
+			<div style="width:300; height:300">
+				<img id="main-photo" src="/<?=$this->path?>/<?=$this->product->mainImage?>" title="<?=$this->product->name?>" alt="<?=$this->product->name?>" />
+			</div>			
+		</div>
+		<div class="pd_adding">
+		<?
+		if ( $this->imagesList ) {
+			foreach ( $this->imagesList as $image )	 {
+		?>
+			<img class="icon" src="/<?=$this->path?>/<?=$image->thumb?>" title="<?=$this->product->name?>" alt="<?=$this->product->name?>" />
+		<?
+			}
+		}
+		?>
+			
+		</div>
+	</div>
+
+	<div class="pd_data line-ul">
+		<form action="" id="product-params">
+			<ul>		
+				<li><h2>$<?=$this->product->price?></h2></li>
+				<li><strong>Product Description</strong><br><br><div><?=$this->product->description?></div><br></li>
+				<?
+				if ( count($this->product->options) > 0 ) {
+				?>
+					<li style="height:25px;">
+					
+					<select name="option_id" style="float:right; width:40%">
+					<?
+					foreach ( $this->product->options as $option ) {
+					?>
+						<option value="<?=$option->id?>"><?=$option->name?></option>
+					<?
+					}
+					?>
+					</select>
+					<span style="float:right;padding-top:3px;">:&nbsp;</span>
+					<div class="text-limit-right" style="width:55%; padding-top:3px;">
+						<label title="Size" for="opton-614">Option</label>
+					</div>
+				</li>
+				<?
+				}
+				?>
+				<li>
+					<div id="contact">
+						Have a question? <a href="/store/contact.php?pid=469">Contact the Seller</a>
+					</div>
+				</li>
+			</ul>
+			<input type="hidden" id="product_id" name="product_id" value="<?=$this->product->id?>" />
+			<button type="button" class="add-to-cart-btn" onclick="">Add To Cart</button>
+		</form>
+	</div>
+</div>
+<?
+	//$this->headScript()->appendScript('$(function() {alert(Piwik)})')
+?>

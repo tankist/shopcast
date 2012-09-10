@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title><?=$this->title?></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="/css/style.css" rel="stylesheet" type="text/css"><!--[if gte IE 5.5]><script type="text/javascript">var JS_URL = "/js"</script><script type="text/javascript" src="/js/ie-png-fix/ie-png-fix.js"></script><style type="text/css">img {filter:expression(fixPNG(this));}</style><![endif]-->
+</head>
+<body style="width: 97%;">
+<div class="outer">
+	<div class="inner">
+		<div class="center">
+			<div id="main-body" class="down">
+				<div id="header"><a href="/"><?=$this->store_name?> Store</a></div>
+				<div id="products">
+					<div id="welcome">
+						<div id="welcome-title"><?=$this->contentTitle?></div>
+						<div id="shopping-cart">
+							<div>
+								<span id="sc-items"><span><?=$this->count?></span> items </span>
+								<button class="view-cart-btn" onclick="document.location.href='/shopping-cart/view/';" >View Cart</button>
+							</div>
+							<div>
+								<span id="sc-total">Total: $<span><?=$this->totalPrice?></span></span>
+								<button class="checkout-btn" onclick="document.location.href='/order/shipping/';" >Checkout</button>
+							</div>
+						</div>
+					</div>
+					<?=$this->flashMessages()?>
+					<div class="body">
+						<?=$this->layout()->content?>
+					</div>
+					<div class="body" style="padding: 0pt 0pt 5px;">
+						<div class="pg"></div>
+					</div>
+				</div>
+				<div id="footer">
+					<div class="body"><a href="#">FAQ</a> | <a href="#">Contact</a></div>
+				</div>
+			</div>		
+		</div>
+	</div>
+</div>
+<?=$this->headScript()?>
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://<?=$_SERVER['HTTP_HOST']?>/piwik/" : "http://<?=$_SERVER['HTTP_HOST']?>/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+if (sellcastCustomData) piwikTracker.setCustomData(sellcastCustomData);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://<?=$_SERVER['HTTP_HOST']?>/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tag -->
+</body></html>

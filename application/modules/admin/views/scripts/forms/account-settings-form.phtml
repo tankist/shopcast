@@ -1,0 +1,71 @@
+			<div class="blue-triangle">
+				<div class="blue-h1">
+					<h1 class="fl">account settings</h1>
+					<div class="font-white fr" style="padding-top:2px;">* For Required Fields</div>
+				</div>
+			</div>
+			<div class="grey-h2">
+				<h2 class="fl">basics</h2>
+			</div>
+			<dl>
+				<dt><?=$this->element->company_name->getLabel()?> <span class="required">&nbsp;&nbsp;</span></dt>
+				<dd><?=$this->element->company_name?></dd>
+			</dl>
+			<dl>
+				<dt><?=$this->element->paypal_email->getLabel()?> <span class="required">&nbsp;&nbsp;</span></dt>
+				<dd><?=$this->element->paypal_email?></dd>
+			</dl>
+			<dl class="active">
+				<dt><?=$this->element->email->getLabel()?> <span class="required">&nbsp;&nbsp;</span></dt>
+				<dd><?=$this->element->email?></dd>
+			</dl>
+			<dl>
+				<dt><?=$this->element->country_id->getLabel()?> <span class="required">&nbsp;&nbsp;</span></dt>
+				<dd class="align-right"><?=$this->element->country_id?></dd>
+			</dl>
+			<dl class="last">
+				<dt>Store Image <span >&nbsp;&nbsp;</span></dt>
+				<dd class="align-right">
+					<?=$this->element->logo?>
+					<div class="input-file-bg"></div>
+					<div class="profile-file-name"><span class="file-name">my_store_photo.jpg</span>&nbsp;&nbsp;<span class="vline">|</span>&nbsp;&nbsp;<a href="#" id="deleteProfileImage">Remove</a></div>
+					<div class="profile-image-loading"><div class="fr">&nbsp;<span class="file-name">my_store_photo.jpg</span></div><div class="sc-loader fr"></div></div>
+				</dd>
+			</dl>
+			
+			<div class="grey-h2">
+				<h2 class="fl">domains</h2>
+			</div>
+			<dl >
+				<dt><?=$this->element->domain->getLabel()?> <span class="required">&nbsp;&nbsp;</span></dt>
+				<dd>
+					<?=$this->element->domain?>.sellcast.com
+					<div class="description">Note: this change takes affect immediately. The old subdomain will no longer work or redirect to your new subdomain.</div>
+				</dd>
+			</dl>
+			<dl class="last" >
+				<dt><?=$this->element->url->getLabel()?> <span>&nbsp;&nbsp;</span></dt>
+				<dd>
+					<?=$this->element->url?>
+					<div class="description">If you have a website that links to your store, enter the URL here and we'll add link in your store for visitors to return to your site.</div>
+					
+				</dd>
+			</dl>
+			
+			<div class="grey-h2">
+				<h2 class="fl">password</h2>
+			</div>
+			<dl>
+				<dt><?=$this->element->passwd->getLabel()?> <span>&nbsp;&nbsp;</span></dt>
+				<dd><?=$this->element->passwd?></dd>
+			</dl>
+			<dl class="last">
+				<dt><?=$this->element->password2->getLabel()?> <span>&nbsp;&nbsp;</span></dt>
+				<dd>
+					<?=$this->element->password2?><br />
+					<div class="description">Must be same as password</div>
+					
+				</dd>
+			</dl>
+			<div class="account-save-button"><?=$this->element->id?><?=$this->element->button_save?><div class="fl second-button-link">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Cancel</a></div></div>
+		

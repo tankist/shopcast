@@ -1,0 +1,24 @@
+<? if (!empty($this->product)) { ?>
+	<dl>
+		<dt>Name:</dt>
+		<dd><?=$this->product->name?></dd>
+		<dt>Description:</dt>
+		<dd><?=$this->product->descr?></dd>
+		<dt>Status:</dt>
+		<dd><?=$this->product->status?></dd>
+		<dt>Date added:</dt>
+		<dd><?=$this->product->add_dt?></dd>
+		<dt>Options:</dt>
+		<dd><ul>
+		<? foreach ($this->product->options as $option) { ?>
+			<li><?=$option->name?> (<?=$option->quantity?>)</li>
+		<? } ?>
+		</ul></dd>
+		<dt>Categories:</dt>
+		<dd><ul>
+		<? foreach ($this->product->categories as $category) { ?>
+			<li><?=$category->name?> (<?=$category->display_order?>)</li>
+		<? } ?>
+		</ul></dd>
+	</dl>
+<?}?>

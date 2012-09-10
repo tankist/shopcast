@@ -1,0 +1,63 @@
+<?//=$this->inlineScript()->appendScript('var products = ' . Zend_Json::encode($this->products) . ';')?>
+<div id="products">
+	<div id="product-grid" class="content-narrow"></div>
+	<div id="product-edit-form"></div>
+</div>
+<script type="text/html" id="bigGridHeader">
+<% if (header && header.length>0) { %>
+	<tr>
+		<% for (var i=0;i<header.length;i++) { %>
+			<th class="<%=options.classPrefix%><%=header[i].label.toLowerCase()%>">
+				<% if (!!header[i].sortField) { %>
+					<a href="#" rel="<%=header[i].sortField%>" class="sort">
+						<span class="sc-grid-header-title"><%=header[i].label%></span>
+						<span class="sc-grid-header-sort asc">▲</span>
+						<span class="sc-grid-header-sort desc">▼</span>
+					</a>
+				<% } else {%>
+					<%=header[i].label%>
+				<%}%>
+			</th>
+		<%}%>
+		<th class="delete-header">&nbsp;</th>
+	</tr>
+<% } %>
+<tr class="hr"><td colspan="<%=(header.length + 1)%>">&nbsp;</td></tr>
+</script>
+<script type="text/html" id="productsBigGridRows">
+	<% for (var i=0;i<rows.length;i++) { %><tr class="extensible" product_id="<%=rows[i].product_id%>" row="<%=i%>">
+		<td class="<%=options.classPrefix%>product_name"><button class="button-plus">+</button><a href="<?=$this->url(array('action' => 'edit', 'id' => ''))?><%=rows[i].product_id%>"><%=rows[i].product_name%></a></td>
+		<td class="<%=options.classPrefix%>price">$<%=parseFloat(rows[i].price).toFixed(2)%></td>
+		<td class="<%=options.classPrefix%>inventory"><%=rows[i].inventory%></td>
+		<td class="<%=options.classPrefix%>status"><%=rows[i].status.capitalize()%></td>
+		<td class="delete-order"><button class="delete">delete</button></td>
+	</tr><% } %>
+</script>
+<script type="text/html" id="productsExtended">
+	<tr class="extended">
+		<td colspan="5">
+			<div class="extended-table-container"><table cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<th class="product-options">Product Options</th>
+					<th class="product-in-stock">In Stock</th>
+				</tr>
+				<tr class="hr"><td colspan="2">&nbsp;</td></tr>
+				<% for (var i=0;i<options.length;i++) { %><tr>
+					<td class="product-options"><%=options[i].name%></td>
+					<td class="product-in-stock">
+						<div class="quantity-edit-container view">
+							<span class="sc-loader transparent fl hidden">&nbsp;</span>
+							<button class="plus big">+</button>
+							<button class="minus big">-</button>
+							<span class="quantity" oid="<%=options[i].id%>"><%=options[i].quantity%></span>
+							<input type="text" value="<%=options[i].quantity%>" class="quantity">
+							<span class="separator fl">|&nbsp;</span>
+							<a class="edit" href="#<%=options[i].id%>">Edit</a>
+							<a class="save" href="#<%=options[i].id%>">Save</a>
+						</div>
+					</td>
+				</tr><% } %>
+			</table></div>
+		</td>
+	</tr>
+</script>

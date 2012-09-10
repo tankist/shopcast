@@ -1,0 +1,148 @@
+production:
+
+    # ------------------------------------------------------------------------------
+    # Doctrine Cache Configuration
+    # ------------------------------------------------------------------------------
+
+    # Points to default cache instance to be used. Optional is only one cache is defined
+    resources:
+        doctrine:
+            cache:
+                defaultCacheInstance: default
+                instances:
+                    default:
+                        id: default
+                        adapterClass: Doctrine\Common\Cache\MemcacheCache
+                        namespace: Api
+                        options:
+                            servers:
+                                0:
+                                    host: localhost
+                                    port: 11211
+                                    persistent: true
+                                    weight: 1
+                                    timeout: 1
+                                    retryInterval: 15
+                                    status: true 
+
+    # ------------------------------------------------------------------------------
+    # Doctrine DBAL Configuration
+    # ------------------------------------------------------------------------------
+
+    # Points to default connection to be used. Optional if only one connection is defined
+            dbal:
+                defaultConnection: default
+                connections:
+                    default:
+                        id: default
+                        parameters:
+                            driver: pdo_mysql
+                            dbname: sellcast
+                            host: localhost
+                            port: 3306
+                            user: sellcast
+                            password: temp123
+                        types:
+                            filterType: Skaya\Doctrine\Type\FilterType
+
+    # ------------------------------------------------------------------------------
+    # Doctrine ORM Configuration
+    # ------------------------------------------------------------------------------
+
+    # Points to default EntityManager to be used. Optional if only one EntityManager is defined
+            orm:
+                defaultEntityManager: default
+                entityManagers:
+                    default:
+                        id: default
+                        entityManagerClass: Doctrine\ORM\EntityManager
+                        configurationClass: Doctrine\ORM\Configuration
+                        entityNamespaces:
+                            api: Entities
+                        connection: default
+                        proxy:
+                            autoGenerateClasses: false
+                            namespace: Proxies\Entities
+                            dir: APPLICATION_PATH/models/Proxies/Entities
+                        metadataCache: default
+                        queryCache: default
+                        resultCache: default
+                        DQLFunctions:
+                            numeric:
+                                PI: DoctrineExtensions\ORM\Query\Functions\Numeric\PiFunction
+                        metadataDrivers:
+                            annotationRegistry:
+                                annotationNamespaces:
+                                    0:
+                                        namespace: Gedmo\Mapping\Annotation
+                                        includePath: APPLICATION_PATH/../library/
+                                annotationFiles:
+                                    0: Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php
+                            drivers:
+                                0:
+                                    adapterClass: Doctrine\ORM\Mapping\Driver\AnnotationDriver
+                                    mappingNamespace: Entities
+                                    mappingDirs:
+                                        0: APPLICATION_PATH/models/Entities
+                                    annotationReaderClass: Doctrine\Common\Annotations\AnnotationReader
+                                    annotationReaderCache: default
+                                    annotationReaderNamespaces:
+                                        Api: Entities
+
+staging:
+    _extends: production
+    resources:
+        doctrine:
+            dbal:
+                connections:
+                    default:
+                        parameters:
+                            dbname: sellcast
+                            host: localhost
+                            port: 3306
+                            user: sellcast
+                            password: temp123
+                        #sqlLoggerClass: Skaya\Doctrine\Logger\Firebug
+            orm:
+                entityManagers:
+                    default:
+                        proxy:
+                            autoGenerateClasses: true
+
+testing:
+    _extends: production
+
+development:
+    _extends: production
+
+    resources:
+        doctrine:
+            dbal:
+                connections:
+                    default:
+                        parameters:
+                            dbname: sellcast
+                            host: localhost
+                            port: 3306
+                            user: sellcast
+                            password: temp123
+                        sqlLoggerClass: Skaya\Doctrine\Logger\Firebug
+            orm:
+                entityManagers:
+                    default:
+                        proxy:
+                            autoGenerateClasses: true
+            cache:
+                instances:
+                    default:
+                        adapterClass: Doctrine\Common\Cache\ArrayCache
+                        #adapterClass: Doctrine\Common\Cache\ApcCache
+                        #adapterClass: Skaya\Doctrine\Cache\Zend
+                        #options:
+                        #    frontendAdapter: Core
+                        #    frontend:
+                        #        automatic_serialization: true
+                        #    backendAdapter: File
+                        #    backend:
+                        #        cache_dir: APPLICATION_PATH/../cache
+                        #namespace: Api
