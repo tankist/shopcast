@@ -227,7 +227,7 @@ class Store
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", length=3)
      */
     protected $role = \Acl::STORE;
 

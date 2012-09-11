@@ -12,7 +12,7 @@ class Default_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->_redirect($this->_helper->url->url(array('module' => 'admin')));
+        $this->_redirect($this->_helper->url->url(array('module' => 'store')));
     }
 
     public function productAction()

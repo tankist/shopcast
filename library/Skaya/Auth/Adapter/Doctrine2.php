@@ -108,7 +108,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
      * setEntityName() - set the entity name to be used in the select query
      *
      * @param  string $entityName
-     * @return Sch_Auth_Adapter_Doctrine2 Provides a fluent interface
+     * @return Skaya_Auth_Adapter_Doctrine2 Provides a fluent interface
      */
     public function setEntityName($entityName)
     {
@@ -120,7 +120,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
      * setIdentityColumn() - set the column name to be used as the identity column
      *
      * @param  string $identityColumn
-     * @return Sch_Auth_Adapter_Doctrine2 Provides a fluent interface
+     * @return Skaya_Auth_Adapter_Doctrine2 Provides a fluent interface
      */
     public function setIdentityColumn($identityColumn)
     {
@@ -132,7 +132,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
      * setCredentialColumn() - set the column name to be used as the credential column
      *
      * @param  string $credentialColumn
-     * @return Sch_Auth_Adapter_Doctrine2 Provides a fluent interface
+     * @return Skaya_Auth_Adapter_Doctrine2 Provides a fluent interface
      */
     public function setCredentialColumn($credentialColumn)
     {
@@ -144,7 +144,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
      * setIdentity() - set the value to be used as the identity
      *
      * @param  string $value
-     * @return Sch_Auth_Adapter_Doctrine2 Provides a fluent interface
+     * @return Skaya_Auth_Adapter_Doctrine2 Provides a fluent interface
      */
     public function setIdentity($value)
     {
@@ -156,7 +156,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
      * setCredential() - set the credential value to be used
      *
      * @param  string $credential
-     * @return Sch_Auth_Adapter_Doctrine2 Provides a fluent interface
+     * @return Skaya_Auth_Adapter_Doctrine2 Provides a fluent interface
      */
     public function setCredential($credential)
     {
@@ -196,15 +196,15 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
         if ($this->_em === null) {
             $exception = 'A database connection was not set, nor could one be created.';
         } elseif ($this->_entityName == '') {
-            $exception = 'A entity name must be supplied for the Sch_Auth_Adapter_Doctrine2 authentication adapter.';
+            $exception = 'A entity name must be supplied for the Skaya_Auth_Adapter_Doctrine2 authentication adapter.';
         } elseif ($this->_identityColumn == '') {
-            $exception = 'An identity column must be supplied for the Sch_Auth_Adapter_Doctrine2 authentication adapter.';
+            $exception = 'An identity column must be supplied for the Skaya_Auth_Adapter_Doctrine2 authentication adapter.';
         } elseif ($this->_credentialColumn == '') {
-            $exception = 'A credential column must be supplied for the Sch_Auth_Adapter_Doctrine2 authentication adapter.';
+            $exception = 'A credential column must be supplied for the Skaya_Auth_Adapter_Doctrine2 authentication adapter.';
         } elseif ($this->_identity == '') {
-            $exception = 'A value for the identity was not provided prior to authentication with Sch_Auth_Adapter_Doctrine2.';
+            $exception = 'A value for the identity was not provided prior to authentication with Skaya_Auth_Adapter_Doctrine2.';
         } elseif ($this->_credential === null) {
-            $exception = 'A credential value was not provided prior to authentication with Sch_Auth_Adapter_Doctrine2.';
+            $exception = 'A credential value was not provided prior to authentication with Skaya_Auth_Adapter_Doctrine2.';
         }
 
         if (null !== $exception) {
@@ -254,8 +254,6 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
         try {
             $resultIdentities = $query->execute();
         } catch (Exception $e) {
-            var_dump($e);
-            exit;
             /**
              * @see Zend_Auth_Adapter_Exception
              */
@@ -288,13 +286,13 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
             $resultIdentity = $resultIdentities[0];
             if ($this->_saltColumn) {
                 foreach ((array)$this->_saltColumn as $saltColumn) {
-                    $this->_credential .= $resultIdentity->{$saltColumn};
+                    $this->_credential .= $this->_getEntityPropertyValue($resultIdentity, $saltColumn);
                 }
             }
             if (($mutator = $this->getCredentialMutator()) && is_callable($mutator)) {
                 $this->_credential = call_user_func($mutator, $this->_credential);
             }
-            if ($resultIdentity->{$this->_credentialColumn} != $this->_credential) {
+            if ($this->_getEntityPropertyValue($resultIdentity, $this->_credentialColumn) != $this->_credential) {
                 $this->_authenticateResultInfo['code'] = Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID;
                 $this->_authenticateResultInfo['messages'][] = 'Supplied credential is invalid.';
             } else {
@@ -326,7 +324,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
 
     /**
      * @param string $saltColumn
-     * @return Sch_Auth_Adapter_Doctrine2
+     * @return Skaya_Auth_Adapter_Doctrine2
      */
     public function setSaltColumn($saltColumn)
     {
@@ -344,7 +342,7 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
 
     /**
      * @param Closure $credentialMutator
-     * @return Sch_Auth_Adapter_Doctrine2
+     * @return Skaya_Auth_Adapter_Doctrine2
      */
     public function setCredentialMutator($credentialMutator)
     {
@@ -358,6 +356,28 @@ class Skaya_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface
     public function getCredentialMutator()
     {
         return $this->_credentialMutator;
+    }
+
+    /**
+     * @param $entity
+     * @param $column
+     * @return mixed
+     * @throws InvalidArgumentException
+     */
+    protected function _getEntityPropertyValue($entity, $column)
+    {
+        $reflection = new ReflectionObject($entity);
+        if (!$reflection->hasProperty($column)) {
+            throw new InvalidArgumentException();
+        }
+        if ($reflection->getProperty($column)->isPublic()) {
+            return $reflection->getProperty($column)->getValue($entity);
+        }
+        $getterName = 'get' . ucfirst($column);
+        if ($reflection->hasMethod($getterName) && $reflection->getMethod($getterName)->isPublic()) {
+            return call_user_func(array($entity, $getterName));
+        }
+        throw new InvalidArgumentException($column . ' property is not accessible');
     }
 
 }

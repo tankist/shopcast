@@ -37,8 +37,8 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
             'controller' => 'auth',
             'action' => 'login'
         ),
-        'admin' => array(
-            'module' => 'admin',
+        'store' => array(
+            'module' => 'store',
             'controller' => 'auth',
             'action' => 'login'
         )
@@ -56,12 +56,8 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
     public function getStore()
     {
         if (!$this->_store) {
-            if (($key = $this->getRequest()->getParam('api_key'))) {
-                /** @var $em \Doctrine\ORM\EntityManager */
-                $em = Zend_Controller_Action_HelperBroker::getStaticHelper('Em')->getEntityManager();
-                $this->_store = $em->getRepository('\Entities\Consumer')->findOneBy(array('key' => $key));
-                $this->getRequest()->setParam('consumer', $this->_store);
-            }
+            $this->_store = Zend_Controller_Action_HelperBroker::getStaticHelper('Store')->getStore();
+            Zend_Controller_Front::getInstance()->setParam('store', $this->_store);
         }
         return $this->_store;
     }
@@ -77,8 +73,8 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @return int
      */
     public function getRole() {
-        if ($key = $this->getStore()) {
-            return $key->getRole();
+        if ($store = $this->getStore()) {
+            return $store->getRole();
         }
         return $this->_defaultRole;
     }
@@ -92,6 +88,10 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         return $this->_acl->isAllowed($this->getRole(), $resource, $privelege);
     }
 
+    /**
+     * @param Zend_Controller_Request_Abstract $request
+     * @throws RuntimeException
+     */
     public function preDispatch(Zend_Controller_Request_Abstract $request) {
         $this->_acl = $this->_getAcl();
         $controller = $request->getControllerName();
@@ -137,6 +137,10 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
             ->setDispatched(false);
     }
 
+    /**
+     * @return mixed|null|Zend_Acl
+     * @throws RuntimeException
+     */
     protected function _getAcl() {
         if ($this->_acl instanceof Zend_Acl) {
             return $this->_acl;

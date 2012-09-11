@@ -1,0 +1,37 @@
+<?php
+$layout = $this->layout();
+$navigationHelper = $this->navigation();
+?><!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <?php echo $this->headLink()->prependStylesheet('/css/admin.min.css') ?>
+    <?php echo $this->headTitle() ?>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/">Shopcast</a>
+        <?php echo $navigationHelper->menu($layout->navigation)->setUlClass('nav') ?>
+        <ul class="nav pull-right profile">
+            <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                    <?php if ($this->store): ?>
+                    <span class="gravatar"><?php echo $this->gravatar($this->store->getEmail(), array('img_size' => 32)) ?></span>
+                    <?php endif; ?>
+                    <span class="text">Profile&nbsp;<b class="caret"></b></span>
+                </a>
+                <?php echo $navigationHelper->menu($layout->{'nav-dropdown'})->setUlClass('dropdown-menu') ?>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <?php echo $this->layout()->content ?>
+</div>
+<?php echo $this->headScript()
+    ->prependFile('/js/bootstrap.js')
+    ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js');
+?>
+</body>
+</html>

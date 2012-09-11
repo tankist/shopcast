@@ -36,7 +36,7 @@ class Model_Store extends Model_Abstract implements Model_Interface, Zend_Auth_A
 	
 	const STORE_ROLE_GUEST = 'guest';
 	const STORE_ROLE_STORE = 'store';
-	const STORE_ROLE_ADMIN = 'admin';
+	const STORE_ROLE_ADMIN = 'store';
 	
 	const STORE_DESIGN_SECTION_ELEMENTS = 'elements';
 	const STORE_DESIGN_SECTION_LAYOUT = 'layout';

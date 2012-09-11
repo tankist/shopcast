@@ -16,7 +16,7 @@ class Helper_Store extends Zend_Controller_Action_Helper_Abstract
     public function getStore()
     {
         if (!$this->_store) {
-            if (($this->_store = $this->getFrontController()->getParam('user'))) {
+            if (($this->_store = $this->getFrontController()->getParam('store'))) {
                 return $this->_store;
             }
             $identity = Zend_Auth::getInstance()->getIdentity();
@@ -27,13 +27,13 @@ class Helper_Store extends Zend_Controller_Action_Helper_Abstract
                     throw new Zend_Controller_Action_Exception('Entity manager cannot be found');
                 }
                 $manager = new Service_Store($emHelper->getEntityManager());
-                $store = is_string($identity) ? $manager->getByEmail($identity) : null;
+                $store = is_string($identity) ? $manager->getByDomain($identity) : null;
                 $this->_store = $store;
                 if ($store) {
                     $store->setLastLoginDate(new DateTime());
                     $manager->save($store);
                 }
-                $this->getFrontController()->setParam('user', $this->_store);
+                $this->getFrontController()->setParam('staore', $this->_store);
             }
         }
         return $this->_store;

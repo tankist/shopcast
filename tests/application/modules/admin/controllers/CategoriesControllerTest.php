@@ -11,7 +11,7 @@ class Admin_CategoriesControllerTest extends Zend_Test_PHPUnit_ControllerTestCas
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'Categories', 'module' => 'admin');
+        $params = array('action' => 'index', 'controller' => 'Categories', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -28,7 +28,7 @@ class Admin_CategoriesControllerTest extends Zend_Test_PHPUnit_ControllerTestCas
 
     public function testSaveAction()
     {
-        $params = array('action' => 'save', 'controller' => 'Categories', 'module' => 'admin');
+        $params = array('action' => 'save', 'controller' => 'Categories', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -45,7 +45,7 @@ class Admin_CategoriesControllerTest extends Zend_Test_PHPUnit_ControllerTestCas
 
     public function testDeleteAction()
     {
-        $params = array('action' => 'delete', 'controller' => 'Categories', 'module' => 'admin');
+        $params = array('action' => 'delete', 'controller' => 'Categories', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -62,7 +62,7 @@ class Admin_CategoriesControllerTest extends Zend_Test_PHPUnit_ControllerTestCas
 
     public function testReorderAction()
     {
-        $params = array('action' => 'reorder', 'controller' => 'Categories', 'module' => 'admin');
+        $params = array('action' => 'reorder', 'controller' => 'Categories', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);

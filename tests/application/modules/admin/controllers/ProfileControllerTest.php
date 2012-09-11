@@ -11,7 +11,7 @@ class Admin_ProfileControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'Profile', 'module' => 'admin');
+        $params = array('action' => 'index', 'controller' => 'Profile', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -28,7 +28,7 @@ class Admin_ProfileControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testAddAction()
     {
-        $params = array('action' => 'add', 'controller' => 'Profile', 'module' => 'admin');
+        $params = array('action' => 'add', 'controller' => 'Profile', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -45,7 +45,7 @@ class Admin_ProfileControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testEditAction()
     {
-        $params = array('action' => 'edit', 'controller' => 'Profile', 'module' => 'admin');
+        $params = array('action' => 'edit', 'controller' => 'Profile', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -62,7 +62,7 @@ class Admin_ProfileControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testSaveAction()
     {
-        $params = array('action' => 'save', 'controller' => 'Profile', 'module' => 'admin');
+        $params = array('action' => 'save', 'controller' => 'Profile', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -79,7 +79,7 @@ class Admin_ProfileControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testImageAction()
     {
-        $params = array('action' => 'image', 'controller' => 'Profile', 'module' => 'admin');
+        $params = array('action' => 'image', 'controller' => 'Profile', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -96,7 +96,7 @@ class Admin_ProfileControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testUnimageAction()
     {
-        $params = array('action' => 'unimage', 'controller' => 'Profile', 'module' => 'admin');
+        $params = array('action' => 'unimage', 'controller' => 'Profile', 'module' => 'store');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);

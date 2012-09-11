@@ -4879,3 +4879,10 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+.gravatar {
+  position: absolute;
+  top: 4px;
+}
+.profile .text {
+  padding-left: 40px;
+}

@@ -25,6 +25,7 @@ $acl->addRole(new Zend_Acl_Role(Acl::ADMIN), Acl::PREMIUM_STORE);
 $acl->addResource(new Zend_Acl_Resource('index'));
 $acl->addResource(new Zend_Acl_Resource('error'), 'index');
 $acl->addResource(new Zend_Acl_Resource('default'), 'index');
+$acl->addResource(new Zend_Acl_Resource('frontend'), 'index');
 $acl->addResource(new Zend_Acl_Resource('store'));
 $acl->addResource(new Zend_Acl_Resource('store.auth'), 'index');
 $acl->addResource(new Zend_Acl_Resource('root'));
@@ -36,7 +37,7 @@ $acl->deny(Acl::GUEST, null);
 $acl->allow(Acl::GUEST, 'index');
 
 $acl->deny(null, 'store');
-$acl->allow(Acl::STORE);
+$acl->allow(Acl::STORE, 'store');
 
 $acl->deny(null, 'root');
 $acl->allow(Acl::ADMIN);
