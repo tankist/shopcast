@@ -81,16 +81,16 @@ class Store extends \Entities\Store implements \Doctrine\ORM\Proxy\Proxy
         return parent::addProduct($product);
     }
 
-    public function setCompanyName($companyName)
+    public function setTitle($companyName)
     {
         $this->__load();
-        return parent::setCompanyName($companyName);
+        return parent::setTitle($companyName);
     }
 
-    public function getCompanyName()
+    public function getTitle()
     {
         $this->__load();
-        return parent::getCompanyName();
+        return parent::getTitle();
     }
 
     public function setDescription($description)
@@ -129,18 +129,6 @@ class Store extends \Entities\Store implements \Doctrine\ORM\Proxy\Proxy
         return parent::getDomain();
     }
 
-    public function setEmail($email)
-    {
-        $this->__load();
-        return parent::setEmail($email);
-    }
-
-    public function getEmail()
-    {
-        $this->__load();
-        return parent::getEmail();
-    }
-
     public function setIsDaylightTime($isDaylightTime)
     {
         $this->__load();
@@ -165,30 +153,6 @@ class Store extends \Entities\Store implements \Doctrine\ORM\Proxy\Proxy
         return parent::getIsOrderInform();
     }
 
-    public function setLastLoginDate($lastLoginDate)
-    {
-        $this->__load();
-        return parent::setLastLoginDate($lastLoginDate);
-    }
-
-    public function getLastLoginDate()
-    {
-        $this->__load();
-        return parent::getLastLoginDate();
-    }
-
-    public function setLoginCount($loginCount)
-    {
-        $this->__load();
-        return parent::setLoginCount($loginCount);
-    }
-
-    public function getLoginCount()
-    {
-        $this->__load();
-        return parent::getLoginCount();
-    }
-
     public function setLogoExt($logoExt)
     {
         $this->__load();
@@ -211,66 +175,6 @@ class Store extends \Entities\Store implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getOrderEmail();
-    }
-
-    public function setOwnerName($ownerName)
-    {
-        $this->__load();
-        return parent::setOwnerName($ownerName);
-    }
-
-    public function getOwnerName()
-    {
-        $this->__load();
-        return parent::getOwnerName();
-    }
-
-    public function setPassword($password)
-    {
-        $this->__load();
-        return parent::setPassword($password);
-    }
-
-    public function getPassword()
-    {
-        $this->__load();
-        return parent::getPassword();
-    }
-
-    public function setPayoutInfo($payoutInfo)
-    {
-        $this->__load();
-        return parent::setPayoutInfo($payoutInfo);
-    }
-
-    public function getPayoutInfo()
-    {
-        $this->__load();
-        return parent::getPayoutInfo();
-    }
-
-    public function setPayoutType($payoutType)
-    {
-        $this->__load();
-        return parent::setPayoutType($payoutType);
-    }
-
-    public function getPayoutType()
-    {
-        $this->__load();
-        return parent::getPayoutType();
-    }
-
-    public function setPolicy($policy)
-    {
-        $this->__load();
-        return parent::setPolicy($policy);
-    }
-
-    public function getPolicy()
-    {
-        $this->__load();
-        return parent::getPolicy();
     }
 
     public function setPurchaseFee($purchaseFee)
@@ -333,58 +237,34 @@ class Store extends \Entities\Store implements \Doctrine\ORM\Proxy\Proxy
         return parent::getTimezoneOffset();
     }
 
-    public function setType($type)
+    public function getCategories()
     {
         $this->__load();
-        return parent::setType($type);
+        return parent::getCategories();
     }
 
-    public function getType()
+    public function addCategory(\Entities\Category $category)
     {
         $this->__load();
-        return parent::getType();
+        return parent::addCategory($category);
     }
 
-    public function setUrl($url)
+    public function setUser($user)
     {
         $this->__load();
-        return parent::setUrl($url);
+        return parent::setUser($user);
     }
 
-    public function getUrl()
+    public function getUser()
     {
         $this->__load();
-        return parent::getUrl();
-    }
-
-    public function setVoteCount($voteCount)
-    {
-        $this->__load();
-        return parent::setVoteCount($voteCount);
-    }
-
-    public function getVoteCount()
-    {
-        $this->__load();
-        return parent::getVoteCount();
-    }
-
-    public function setVoteSum($voteSum)
-    {
-        $this->__load();
-        return parent::setVoteSum($voteSum);
-    }
-
-    public function getVoteSum()
-    {
-        $this->__load();
-        return parent::getVoteSum();
+        return parent::getUser();
     }
 
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'domain', 'password', 'companyName', 'ownerName', 'email', 'url', 'timezone', 'isDaylightTime', 'timezoneOffset', 'description', 'logoExt', 'type', 'created', 'isOrderInform', 'orderEmail', 'purchasePercentage', 'purchaseFee', 'payoutType', 'payoutInfo', 'policy', 'state', 'voteCount', 'voteSum', 'loginCount', 'lastLoginDate', 'products', 'payments', 'design');
+        return array('__isInitialized__', 'id', 'domain', 'title', 'description', 'timezone', 'isDaylightTime', 'timezoneOffset', 'logoExt', 'created', 'isOrderInform', 'orderEmail', 'purchasePercentage', 'purchaseFee', 'state', 'categories', 'products', 'payments', 'design', 'user');
     }
 
     public function __clone()

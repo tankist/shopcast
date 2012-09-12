@@ -1,6 +1,7 @@
 <?php
 
-class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
+class Plugin_Acl extends Zend_Controller_Plugin_Abstract
+{
 
     const REDIRECT_COUNTER_THRESHOLD = 10;
 
@@ -20,12 +21,15 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      */
     protected $_acl;
 
+    /**
+     * @var string
+     */
     protected $_aclRoute = '%s.%s';
 
     /**
-     * @var \Entities\Store
+     * @var \Entities\User
      */
-    protected $_store;
+    protected $_user;
 
     /**
      * Location to go to if the user isn't authenticated
@@ -33,12 +37,12 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      */
     protected $_noAuth = array(
         '*' => array(
-            'module' => 'store',
+            'module' => 'backend',
             'controller' => 'auth',
             'action' => 'login'
         ),
-        'store' => array(
-            'module' => 'store',
+        'backend' => array(
+            'module' => 'backend',
             'controller' => 'auth',
             'action' => 'login'
         )
@@ -51,30 +55,32 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
     protected $_noAcl = array();
 
     /**
-     * @return Entities\Store
+     * @return Entities\User
      */
-    public function getStore()
+    public function getUser()
     {
-        if (!$this->_store) {
-            $this->_store = Zend_Controller_Action_HelperBroker::getStaticHelper('Store')->getStore();
-            Zend_Controller_Front::getInstance()->setParam('store', $this->_store);
+        if (!$this->_user) {
+            $this->_user = Zend_Controller_Action_HelperBroker::getStaticHelper('User')->getUser();
+            Zend_Controller_Front::getInstance()->setParam('user', $this->_user);
         }
-        return $this->_store;
+        return $this->_user;
     }
 
     /**
      * @return bool
      */
-    public function isRegistered() {
-        return (null != $this->getStore());
+    public function isRegistered()
+    {
+        return (null != $this->getUser());
     }
 
     /**
      * @return int
      */
-    public function getRole() {
-        if ($store = $this->getStore()) {
-            return $store->getRole();
+    public function getRole()
+    {
+        if ($user = $this->getUser()) {
+            return $user->getRole();
         }
         return $this->_defaultRole;
     }
@@ -84,7 +90,8 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @param null $privelege
      * @return bool
      */
-    public function isAllowed($resource = null, $privelege = null) {
+    public function isAllowed($resource = null, $privelege = null)
+    {
         return $this->_acl->isAllowed($this->getRole(), $resource, $privelege);
     }
 
@@ -92,7 +99,8 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @param Zend_Controller_Request_Abstract $request
      * @throws RuntimeException
      */
-    public function preDispatch(Zend_Controller_Request_Abstract $request) {
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
         $this->_acl = $this->_getAcl();
         $controller = $request->getControllerName();
         $action = $request->getActionName();
@@ -141,7 +149,8 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @return mixed|null|Zend_Acl
      * @throws RuntimeException
      */
-    protected function _getAcl() {
+    protected function _getAcl()
+    {
         if ($this->_acl instanceof Zend_Acl) {
             return $this->_acl;
         }

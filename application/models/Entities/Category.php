@@ -38,7 +38,22 @@ class Category
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Product", inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity="Store", inversedBy="categories", cascade={"persist"})
+     * @ORM\JoinTable(name="store_categories",
+     *   joinColumns={
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     * @ORM\JoinColumn(name="store_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    protected $stores;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Product", inversedBy="categories", cascade={"persist"})
      * @ORM\JoinTable(name="product_categories",
      *   joinColumns={
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -49,13 +64,6 @@ class Category
      * )
      */
     protected $products;
-
-    /**
-     * @var Store
-     *
-     * @ORM\ManyToOne(targetEntity="Store", inversedBy="categories")
-     */
-    protected $store;
 
     public function __construct()
     {
@@ -107,31 +115,12 @@ class Category
     }
 
     /**
-     * @param \Entities\Store $store
-     * @return Category
-     */
-    public function setStore($store)
-    {
-        $this->store = $store;
-        return $this;
-    }
-
-    /**
-     * @return \Entities\Store
-     */
-    public function getStore()
-    {
-        return $this->store;
-    }
-
-    /**
      * @param Product $product
      * @return Category
      */
     public function addProduct(Product $product)
     {
         $this->products[] = $product;
-        $product->addCategory($this);
         return $this;
     }
 
@@ -141,6 +130,24 @@ class Category
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getStores()
+    {
+        return $this->stores;
+    }
+
+    /**
+     * @param Store $store
+     * @return Category
+     */
+    public function addStore(Store $store)
+    {
+        $this->stores[] = $store;
+        return $this;
     }
 
 }

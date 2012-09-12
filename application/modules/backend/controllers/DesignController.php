@@ -1,6 +1,6 @@
 <?php
 
-class Store_DesignController extends Zend_Controller_Action
+class Backend_DesignController extends Zend_Controller_Action
 {
 
     protected $_cssThemeGeneratorTokenStart = '/**===Automatically genarated rules. Do not ===**/';

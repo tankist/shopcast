@@ -115,7 +115,7 @@ class Product
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Category", mappedBy="products")
+     * @ORM\ManyToMany(targetEntity="Category", mappedBy="products", cascade={"persist"})
      */
     protected $categories;
 
@@ -147,9 +147,14 @@ class Product
         return $this->id;
     }
 
+    /**
+     * @param Category $category
+     * @return Product
+     */
     public function addCategory(Category $category)
     {
         $this->categories[] = $category;
+        $category->addProduct($this);
         return $this;
     }
 

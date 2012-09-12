@@ -1,22 +1,22 @@
 <?php
 
-class Store_AuthController extends Zend_Controller_Action
+class Backend_AuthController extends Zend_Controller_Action
 {
 
     /**
-     * @var \Entities\Store;
+     * @var \Entities\User;
      */
-    protected $_store;
+    protected $_user;
 
     /**
-     * @var Service_Store
+     * @var Service_User
      */
     protected $_service;
 
     public function init()
     {
-        $this->_service = new Service_Store($this->_helper->Em());
-        $this->_store = $this->_helper->Store();
+        $this->_service = new Service_User($this->_helper->Em());
+        $this->_user = $this->_helper->User();
     }
 
     public function indexAction()
@@ -37,18 +37,19 @@ class Store_AuthController extends Zend_Controller_Action
         if ($request->isPost() && $loginForm->isValid($request->getPost())) {
             $authAdapter = new Skaya_Auth_Adapter_Doctrine2(
                 $this->_service->getEntityManager(),
-                'Entities\Store',
-                'domain',
+                'Entities\User',
+                'email',
                 'password'
             );
             $authAdapter->setIdentity($loginForm->domain->getValue());
             $authAdapter->setCredential($loginForm->password->getValue());
+            $authAdapter->setCredentialMutator(function($credential) {
+                return md5($credential);
+            });
             $auth = Zend_Auth::getInstance();
             $authResult = $auth->authenticate($authAdapter);
             if ($authResult->isValid()) {
-                $this->_store = $this->_helper->Store();
-                $this->_store->setLastLoginDate(new DateTime());
-                $this->_service->save($this->_store);
+                $this->_user = $this->_helper->User();
                 if (!$request->isXmlHttpRequest()) {
                     $referer = $loginForm->referer->getValue();
                     $this->_redirect(($referer) ? $referer : $this->_helper->url(''));

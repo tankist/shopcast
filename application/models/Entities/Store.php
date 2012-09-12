@@ -29,39 +29,18 @@ class Store
     protected $domain;
 
     /**
-     * @var string $password
+     * @var string $title
      *
-     * @ORM\Column(name="password", type="string", length=64, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
-    protected $password;
+    protected $title;
 
     /**
-     * @var string $companyName
+     * @var string $descr
      *
-     * @ORM\Column(name="company_name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
-    protected $companyName;
-
-    /**
-     * @var string $ownerName
-     *
-     * @ORM\Column(name="owner_name", type="string", length=255, nullable=false)
-     */
-    protected $ownerName;
-
-    /**
-     * @var string $email
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
-    protected $email;
-
-    /**
-     * @var string $url
-     *
-     * @ORM\Column(name="url", type="string", length=255, nullable=true)
-     */
-    protected $url;
+    protected $description;
 
     /**
      * @var boolean $timezone
@@ -85,25 +64,11 @@ class Store
     protected $timezoneOffset;
 
     /**
-     * @var string $descr
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    protected $description;
-
-    /**
      * @var string $logoExt
      *
      * @ORM\Column(name="logo_ext", type="string", length=4, nullable=true)
      */
     protected $logoExt;
-
-    /**
-     * @var string $type
-     *
-     * @ORM\Column(name="type", type="string", nullable=false)
-     */
-    protected $type;
 
     /**
      * @var \Datetime $regDate
@@ -141,27 +106,6 @@ class Store
     protected $purchaseFee;
 
     /**
-     * @var string $payoutType
-     *
-     * @ORM\Column(name="payout_type", type="string", nullable=true)
-     */
-    protected $payoutType;
-
-    /**
-     * @var string $payoutInfo
-     *
-     * @ORM\Column(name="payout_info", type="text", nullable=true)
-     */
-    protected $payoutInfo;
-
-    /**
-     * @var string $policy
-     *
-     * @ORM\Column(name="policy", type="text", nullable=true)
-     */
-    protected $policy;
-
-    /**
      * @var string $state
      *
      * @ORM\Column(name="state", type="string", nullable=false)
@@ -169,51 +113,23 @@ class Store
     protected $state;
 
     /**
-     * @var integer $voteCount
-     *
-     * @ORM\Column(name="vote_count", type="integer", nullable=false)
-     */
-    protected $voteCount;
-
-    /**
-     * @var integer $voteSum
-     *
-     * @ORM\Column(name="vote_sum", type="integer", nullable=false)
-     */
-    protected $voteSum;
-
-    /**
-     * @var integer $loginCount
-     *
-     * @ORM\Column(name="login_count", type="integer", nullable=false)
-     */
-    protected $loginCount;
-
-    /**
-     * @var \Datetime $lastLoginDate
-     *
-     * @ORM\Column(name="last_login_date", type="datetime", nullable=true)
-     */
-    protected $lastLoginDate;
-
-    /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="store")
+     * @ORM\ManyToMany(targetEntity="Category", mappedBy="products", cascade={"persist"})
      */
     protected $categories;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="store")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="store", cascade={"all"})
      */
     protected $products;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Payment", mappedBy="store")
+     * @ORM\OneToMany(targetEntity="Payment", mappedBy="store", cascade={"persist"})
      */
     protected $payments;
 
@@ -225,11 +141,11 @@ class Store
     protected $design;
 
     /**
-     * @var int
+     * @var User
      *
-     * @ORM\Column(type="integer", length=3)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="stores")
      */
-    protected $role = \Acl::STORE;
+    protected $user;
 
     public function __construct()
     {
@@ -296,18 +212,18 @@ class Store
      * @param string $companyName
      * @return Store
      */
-    public function setCompanyName($companyName)
+    public function setTitle($companyName)
     {
-        $this->companyName = $companyName;
+        $this->title = $companyName;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCompanyName()
+    public function getTitle()
     {
-        return $this->companyName;
+        return $this->title;
     }
 
     /**
@@ -365,24 +281,6 @@ class Store
     }
 
     /**
-     * @param string $email
-     * @return Store
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * @param boolean $isDaylightTime
      * @return Store
      */
@@ -419,42 +317,6 @@ class Store
     }
 
     /**
-     * @param \Datetime $lastLoginDate
-     * @return Store
-     */
-    public function setLastLoginDate($lastLoginDate)
-    {
-        $this->lastLoginDate = $lastLoginDate;
-        return $this;
-    }
-
-    /**
-     * @return \Datetime
-     */
-    public function getLastLoginDate()
-    {
-        return $this->lastLoginDate;
-    }
-
-    /**
-     * @param int $loginCount
-     * @return Store
-     */
-    public function setLoginCount($loginCount)
-    {
-        $this->loginCount = $loginCount;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLoginCount()
-    {
-        return $this->loginCount;
-    }
-
-    /**
      * @param string $logoExt
      * @return Store
      */
@@ -488,96 +350,6 @@ class Store
     public function getOrderEmail()
     {
         return $this->orderEmail;
-    }
-
-    /**
-     * @param string $ownerName
-     * @return Store
-     */
-    public function setOwnerName($ownerName)
-    {
-        $this->ownerName = $ownerName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOwnerName()
-    {
-        return $this->ownerName;
-    }
-
-    /**
-     * @param string $password
-     * @return Store
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $payoutInfo
-     * @return Store
-     */
-    public function setPayoutInfo($payoutInfo)
-    {
-        $this->payoutInfo = $payoutInfo;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPayoutInfo()
-    {
-        return $this->payoutInfo;
-    }
-
-    /**
-     * @param string $payoutType
-     * @return Store
-     */
-    public function setPayoutType($payoutType)
-    {
-        $this->payoutType = $payoutType;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPayoutType()
-    {
-        return $this->payoutType;
-    }
-
-    /**
-     * @param string $policy
-     * @return Store
-     */
-    public function setPolicy($policy)
-    {
-        $this->policy = $policy;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPolicy()
-    {
-        return $this->policy;
     }
 
     /**
@@ -671,78 +443,6 @@ class Store
     }
 
     /**
-     * @param string $type
-     * @return Store
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $url
-     * @return Store
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param int $voteCount
-     * @return Store
-     */
-    public function setVoteCount($voteCount)
-    {
-        $this->voteCount = $voteCount;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getVoteCount()
-    {
-        return $this->voteCount;
-    }
-
-    /**
-     * @param int $voteSum
-     * @return Store
-     */
-    public function setVoteSum($voteSum)
-    {
-        $this->voteSum = $voteSum;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getVoteSum()
-    {
-        return $this->voteSum;
-    }
-
-    /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getCategories()
@@ -757,26 +457,26 @@ class Store
     public function addCategory(Category $category)
     {
         $this->categories[] = $category;
-        $category->setStore($this);
+        $category->addStore($this);
         return $this;
     }
 
     /**
-     * @param int $role
+     * @param \Entities\User $user
      * @return Store
      */
-    public function setRole($role)
+    public function setUser($user)
     {
-        $this->role = $role;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * @return int
+     * @return \Entities\User
      */
-    public function getRole()
+    public function getUser()
     {
-        return $this->role;
+        return $this->user;
     }
 
 }

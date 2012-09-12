@@ -1,6 +1,6 @@
 <?php
 
-class Store_ProductsController extends Zend_Controller_Action
+class Backend_ProductsController extends Zend_Controller_Action
 {
 
     public $ajaxable = array(

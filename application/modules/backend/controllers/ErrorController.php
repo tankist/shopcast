@@ -1,6 +1,6 @@
 <?php
 
-class Store_ErrorController extends Zend_Controller_Action
+class Backend_ErrorController extends Zend_Controller_Action
 {
 	
 	public $ajaxable = array(

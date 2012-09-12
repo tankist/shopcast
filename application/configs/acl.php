@@ -26,20 +26,20 @@ $acl->addResource(new Zend_Acl_Resource('index'));
 $acl->addResource(new Zend_Acl_Resource('error'), 'index');
 $acl->addResource(new Zend_Acl_Resource('default'), 'index');
 $acl->addResource(new Zend_Acl_Resource('frontend'), 'index');
-$acl->addResource(new Zend_Acl_Resource('store'));
-$acl->addResource(new Zend_Acl_Resource('store.auth'), 'index');
-$acl->addResource(new Zend_Acl_Resource('root'));
-$acl->addResource(new Zend_Acl_Resource('root.auth'), 'index');
+$acl->addResource(new Zend_Acl_Resource('backend'));
+$acl->addResource(new Zend_Acl_Resource('backend.auth'), 'index');
+$acl->addResource(new Zend_Acl_Resource('admin'));
+$acl->addResource(new Zend_Acl_Resource('admin.auth'), 'index');
 
 // Access rights
 
 $acl->deny(Acl::GUEST, null);
 $acl->allow(Acl::GUEST, 'index');
 
-$acl->deny(null, 'store');
-$acl->allow(Acl::STORE, 'store');
+$acl->deny(null, 'backend');
+$acl->allow(Acl::STORE, 'backend');
 
-$acl->deny(null, 'root');
+$acl->deny(null, 'admin');
 $acl->allow(Acl::ADMIN);
 
 return $acl;

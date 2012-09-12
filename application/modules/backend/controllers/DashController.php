@@ -1,6 +1,6 @@
 <?php
 
-class Store_DashController extends Zend_Controller_Action
+class Backend_DashController extends Zend_Controller_Action
 {
 
     public $ajaxable = array(
@@ -10,25 +10,25 @@ class Store_DashController extends Zend_Controller_Action
     );
 
     /**
-     * @var \Entities\Store;
+     * @var \Entities\User;
      */
-    protected $_store;
+    protected $_user;
 
     /**
-     * @var Service_Store
+     * @var Service_User
      */
     protected $_service;
 
     public function init()
     {
-        $this->_service = new Service_Store($this->_helper->Em());
-        $this->_store = $this->_helper->Store();
+        $this->_service = new Service_User($this->_helper->Em());
+        $this->_user = $this->_helper->User();
     }
 
     public function preDispatch()
     {
         $this->_helper->Navigator();
-        $this->view->store = $this->_store;
+        $this->view->me = $this->_user;
     }
 
     public function indexAction()
@@ -50,7 +50,7 @@ class Store_DashController extends Zend_Controller_Action
             $status = $criteria['status'];
         }
 
-        $paginator = $this->_store->getOrdersStatusPaginator($status);
+        $paginator = $this->_user->getOrdersStatusPaginator($status);
         $paginator->setCurrentPageNumber($page)->setItemCountPerPage($limit);
 
         $orderData = array();
@@ -75,7 +75,7 @@ class Store_DashController extends Zend_Controller_Action
         $page = $request->getParam('page', 0);
         $limit = $request->getParam('ipp', 10);
         $criteria = $request->getParam('criteria');
-        $inventory = $this->_store->getInventoryPaginator();
+        $inventory = $this->_user->getInventoryPaginator();
         $inventory->setCurrentPageNumber($page)->setItemCountPerPage($limit);
         $this->view->products = $inventory->getCurrentItems()->toArray();
         $this->view->totalRecords = $inventory->getTotalItemCount();

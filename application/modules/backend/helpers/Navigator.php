@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @class Admin_Helper_Navigator
+ * @class Backend_Helper_Navigator
  */
-class Store_Helper_Navigator extends Helper_AbstractNavigation
+class Backend_Helper_Navigator extends Helper_AbstractNavigation
 {
 
     /**

@@ -1,8 +1,8 @@
 <?php
 
-use Entities\Store;
+use Entities\User;
 
-class Store_StoreController extends Zend_Controller_Action
+class Backend_StoreController extends Zend_Controller_Action
 {
 
     public $ajaxable = array(
@@ -20,19 +20,19 @@ class Store_StoreController extends Zend_Controller_Action
     );
 
     /**
-     * @var Store
+     * @var User
      */
-    protected $_store;
+    protected $_user;
 
     /**
-     * @var Service_Store
+     * @var Service_User
      */
     protected $_service;
 
     public function init()
     {
-        $this->_store = $this->_helper->Store();
-        $this->_service = new Service_Store($this->_helper->Em());
+        $this->_user = $this->_helper->User();
+        $this->_service = new Service_User($this->_helper->Em());
     }
 
     public function indexAction()

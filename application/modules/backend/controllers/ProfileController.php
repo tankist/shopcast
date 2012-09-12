@@ -1,6 +1,6 @@
 <?php
 
-class Store_ProfileController extends Zend_Controller_Action
+class Backend_ProfileController extends Zend_Controller_Action
 {
 
     public function init()

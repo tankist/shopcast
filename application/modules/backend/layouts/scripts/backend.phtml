@@ -16,8 +16,8 @@ $navigationHelper = $this->navigation();
         <ul class="nav pull-right profile">
             <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                    <?php if ($this->store): ?>
-                    <span class="gravatar"><?php echo $this->gravatar($this->store->getEmail(), array('img_size' => 32)) ?></span>
+                    <?php if ($this->me): ?>
+                    <span class="gravatar"><?php echo $this->gravatar($this->me->getEmail(), array('img_size' => 32)) ?></span>
                     <?php endif; ?>
                     <span class="text">Profile&nbsp;<b class="caret"></b></span>
                 </a>

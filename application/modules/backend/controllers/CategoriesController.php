@@ -1,6 +1,6 @@
 <?php
 
-class Store_CategoriesController extends Zend_Controller_Action
+class Backend_CategoriesController extends Zend_Controller_Action
 {
 
     public function init()
